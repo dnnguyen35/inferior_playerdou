@@ -75,12 +75,18 @@ const handlePayOSWebhook = (io) => {
             const paidDonation =
                 await markPaid(orderCode);
 
+            console.log('Before TTS');
+
             const ttsUrl =
                 await generateDonationTts({
                     sender: paidDonation.sender,
                     amount: paidDonation.amount,
                     message: paidDonation.message
                 });
+
+            console.log('TTS completed:', ttsUrl);
+
+            console.log('Before Socket.IO emit');
 
             io.emit('new-donation', {
                 sender: paidDonation.sender,

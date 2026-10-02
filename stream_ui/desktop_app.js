@@ -35,7 +35,8 @@ function createWindow() {
             contextIsolation: true,
             nodeIntegration: false,
             webSecurity: false,
-            allowRunningInsecureContent: true
+            allowRunningInsecureContent: true,
+            autoplayPolicy: 'no-user-gesture-required'
         }
     });
 

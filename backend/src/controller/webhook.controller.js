@@ -1,8 +1,10 @@
 import payOS from '../config/payos.js';
+
 import {
     getDonation,
     markPaid
 } from '../service/donation.service.js';
+
 import {
     generateDonationTts
 } from '../service/tts.service.js';
@@ -10,6 +12,9 @@ import {
 const handlePayOSWebhook = (io) => {
     return async (req, res) => {
         try {
+            console.log('Headers:', req.headers);
+            console.log('Body:', req.body);
+
             const webhookData =
                 payOS.webhooks.verify(req.body);
 

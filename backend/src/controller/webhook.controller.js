@@ -10,6 +10,15 @@ import {
 const handlePayOSWebhook = (io) => {
     return async (req, res) => {
         try {
+
+            const { code, desc, data, signature, success } = req.body;
+
+            console.log("Webhook test request:", data);
+
+            if (!success) {
+                return res.status(200).json({ message: "Test request ok" });
+            }
+
             const webhookData = payOS.webhooks.verify(req.body);
 
             const {

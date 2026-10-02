@@ -10,28 +10,26 @@ import {
 const handlePayOSWebhook = (io) => {
     return async (req, res) => {
         try {
+            const webhookData =
+                payOS.webhooks.verify(req.body);
 
-            const { code, desc, data, signature, success } = req.body;
-
-            console.log("Webhook test request:", data);
-
-            if (!success) {
-                return res.status(200).json({ message: "Test request ok" });
-            }
-
-            const webhookData = payOS.webhooks.verify(req.body);
+            console.log(
+                'PayOS webhook:',
+                webhookData
+            );
 
             const {
                 orderCode,
                 amount
-            } = webhookData;
+            } = webhookData.data;
 
-            console.log('PayOS webhook:', webhookData);
-
-            const donation = await getDonation(orderCode);
+            const donation =
+                await getDonation(orderCode);
 
             if (!donation) {
-                console.log(`Donation not found: ${orderCode}`);
+                console.log(
+                    `Donation not found: ${orderCode}`
+                );
 
                 return res.status(200).json({
                     message: 'Donation not found'
@@ -39,28 +37,37 @@ const handlePayOSWebhook = (io) => {
             }
 
             if (donation.status === 'PAID') {
-                console.log(`Donation already paid: ${orderCode}`);
+                console.log(
+                    `Donation already paid: ${orderCode}`
+                );
 
                 return res.status(200).json({
                     message: 'Donation already processed'
                 });
             }
 
-            if (Number(donation.amount) !== Number(amount)) {
-                console.error(`Amount mismatch: ${orderCode}`);
+            if (
+                Number(donation.amount) !==
+                Number(amount)
+            ) {
+                console.error(
+                    `Amount mismatch: ${orderCode}`
+                );
 
                 return res.status(400).json({
                     message: 'Amount mismatch'
                 });
             }
 
-            const paidDonation = await markPaid(orderCode);
+            const paidDonation =
+                await markPaid(orderCode);
 
-            const ttsUrl = await generateDonationTts({
-                sender: paidDonation.sender,
-                amount: paidDonation.amount,
-                message: paidDonation.message
-            });
+            const ttsUrl =
+                await generateDonationTts({
+                    sender: paidDonation.sender,
+                    amount: paidDonation.amount,
+                    message: paidDonation.message
+                });
 
             io.emit('new-donation', {
                 sender: paidDonation.sender,
@@ -70,14 +77,23 @@ const handlePayOSWebhook = (io) => {
                 ttsUrl
             });
 
-            console.log('Donation emitted:', paidDonation);
+            console.log(
+                'Donation emitted:',
+                {
+                    ...paidDonation,
+                    ttsUrl
+                }
+            );
 
             return res.status(200).json({
                 message: 'Webhook processed successfully'
             });
 
         } catch (error) {
-            console.error('PayOS webhook error:', error);
+            console.error(
+                'PayOS webhook error:',
+                error
+            );
 
             return res.status(400).json({
                 message: 'Invalid webhook'

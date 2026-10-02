@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Vanlon</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="./donation.css">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <section class="donation-card">
+
+            <div class="card-header">
+
+                <div class="icon-wrapper">
+                    💜
+                </div>
+
+                <h1>Ủng hộ mình</h1>
+
+                <p>
+                    Gửi một chút yêu thương và lời nhắn
+                    đến streamer nhé!
+                </p>
+
+            </div>
+
+            <form id="donation-form">
+
+                <!-- NAME -->
+                <div class="form-group">
+
+                    <label for="sender">
+                        Tên của bạn
+                    </label>
+
+                    <input
+                        id="sender"
+                        name="sender"
+                        type="text"
+                        maxlength="100"
+                        autocomplete="name"
+                        placeholder="Nhập tên hiển thị..."
+                        required>
+
+                    <div class="field-hint">
+                        Tối đa 100 ký tự
+                    </div>
+
+                </div>
+
+                <!-- AMOUNT -->
+                <div class="form-group">
+
+                    <label for="amount">
+                        Số tiền
+                    </label>
+
+                    <div class="amount-wrapper">
+
+                        <input
+                            id="amount"
+                            name="amount"
+                            type="number"
+                            min="5000"
+                            step="1000"
+                            inputmode="numeric"
+                            placeholder="5.000"
+                            required>
+
+                        <span>VNĐ</span>
+
+                    </div>
+
+                    <div class="quick-amounts">
+
+                        <button
+                            type="button"
+                            data-amount="5000">
+                            5K
+                        </button>
+
+                        <button
+                            type="button"
+                            data-amount="10000">
+                            10K
+                        </button>
+
+                        <button
+                            type="button"
+                            data-amount="20000">
+                            20K
+                        </button>
+
+                        <button
+                            type="button"
+                            data-amount="50000">
+                            50K
+                        </button>
+
+                        <button
+                            type="button"
+                            data-amount="100000">
+                            100K
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- MESSAGE -->
+                <div class="form-group">
+
+                    <div class="label-row">
+
+                        <label for="message">
+                            Lời nhắn
+                        </label>
+
+                        <span id="message-count">
+                            0/500
+                        </span>
+
+                    </div>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        maxlength="500"
+                        placeholder="Viết lời nhắn cho streamer..."></textarea>
+
+                </div>
+
+                <!-- ERROR -->
+                <div
+                    id="error"
+                    class="error"
+                    role="alert">
+                </div>
+
+                <!-- SUBMIT -->
+                <button
+                    id="submit-button"
+                    class="submit-button"
+                    type="submit">
+
+                    <span id="button-text">
+                        Tiếp tục thanh toán
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+                <p class="secure-note">
+                Thanh toán
+                </p>
+
+            </form>
+
+        </section>
+
+        <p class="footer-text">
+            Cảm ơn bạn đã ủng hộ ❤️
+        </p>
+
+    </main>
+
+    <script src="./donation.js"></script>
+
+</body>
+
+</html>

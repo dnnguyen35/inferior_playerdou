@@ -1,0 +1,28 @@
+{
+  "name": "stream_ui",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "desktop_app.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "24.9.1"
+  },
+  "build": {
+    "appId": "com.donation.alert",
+    "productName": "donation_alert",
+    "files": [
+      "desktop_app.js",
+      "preload.cjs",
+      "index.html",
+      "main.js",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": "portable"
+    }
+  }
+}

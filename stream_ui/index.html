@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>cuopGiatQuan6</title>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+    <style>
+        body {
+            background-color: transparent;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        #alert-box {
+            display: none;
+            text-align: center;
+            margin-top: 80px;
+            animation: bounceIn 0.6s cubic-bezier(0.215, 0.610, 0.355, 1) both;
+        }
+
+        #alert-box img {
+            width: 220px;
+            border-radius: 10px;
+        }
+
+        #donor-info {
+            color: #ffeb3b;
+            font-size: 26px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow:
+                3px 3px 0px #000,
+                -1px -1px 0px #000,
+                1px -1px 0px #000,
+                -1px 1px 0px #000;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        #donor-message {
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: bold;
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                2px 2px 0px #000;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        #test-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 999;
+            text-align: center;
+        }
+
+        #test-panel p {
+            color: white;
+            margin: 0 0 10px;
+            font-size: 14px;
+        }
+
+        #test-panel button {
+            padding: 10px 15px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        #long-test {
+            background: #4caf50;
+        }
+
+        #short-test {
+            background: #2196f3;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+
+            40% {
+                transform: scale3d(.9, .9, .9);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+
+            80% {
+                transform: scale3d(.97, .97, .97);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio
+        id="intro-sound"
+        src="./assets/domixi_intro_donate.mp3"
+        preload="auto">
+    </audio>
+
+    <div id="alert-box">
+
+        <img
+            src="./assets/domixi.gif"
+            alt="Donation Alert">
+
+        <div id="donor-info"></div>
+
+        <div id="donor-message"></div>
+
+    </div>
+
+    <!-- TEST PANEL -->
+    <div id="test-panel">
+
+        <p>Bảng điều khiển thử nghiệm</p>
+
+        <button id="long-test">
+            Test Donate Lời Nhắn Dài
+        </button>
+
+        <button id="short-test">
+            Test Donate Lời Nhắn Ngắn
+        </button>
+
+    </div>
+
+    <script src="./main.js"></script>
+
+</body>
+</html>

@@ -22,7 +22,7 @@ const createeDonation = async (req, res) => {
             });
         }
 
-        if (!Number.isInteger(amount) || amount <= 5000) {
+        if (!Number.isInteger(amount) || amount < 5000) {
             return res.status(400).json({
                 message: 'Amount must be a positive integer greater than 5000 vnd'
             });

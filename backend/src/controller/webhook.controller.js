@@ -34,7 +34,7 @@ const handlePayOSWebhook = (io) => {
             const {
                 orderCode,
                 amount
-            } = webhookData.data;
+            } = webhookData;
 
             const donation =
                 await getDonation(orderCode);

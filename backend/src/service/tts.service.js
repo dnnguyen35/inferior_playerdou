@@ -20,7 +20,7 @@ const generateDonationTts = async ({
             process.env.ELEVENLABS_VOICE_ID,
             {
                 text: textToSpeak,
-                modelId: 'eleven_multilingual_v2',
+                modelId: 'eleven_flash_v2_5',
                 outputFormat: 'mp3_22050_32'
             }
         );

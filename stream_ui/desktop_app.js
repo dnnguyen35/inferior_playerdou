@@ -36,13 +36,25 @@ function createWindow() {
             nodeIntegration: false,
             webSecurity: false,
             allowRunningInsecureContent: true,
-            autoplayPolicy: 'no-user-gesture-required'
+            autoplayPolicy: 'no-user-gesture-required',
+
+            backgroundThrottling: false,
+            additionalArguments: [
+                '--disable-background-timer-throttling',
+                '--disable-renderer-backgrounding'
+            ]
         }
     });
 
     win.setAlwaysOnTop(true, 'floating');
 
     win.loadFile(path.join(__dirname, 'index.html'));
+
+    setInterval(() => {
+        if (win && !win.isDestroyed()) {
+            win.webContents.invalidate();
+        }
+    }, 5000);
 }
 
 app.whenReady().then(() => {

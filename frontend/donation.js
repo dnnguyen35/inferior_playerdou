@@ -15,7 +15,7 @@ const buttonText =
 const errorElement =
     document.getElementById('error');
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://inferior-playerdou.onrender.com';
 
 const MIN_AMOUNT = 5000;
 const MAX_MESSAGE_LENGTH = 500;

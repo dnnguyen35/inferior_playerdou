@@ -15,8 +15,16 @@ const handlePayOSWebhook = (io) => {
             console.log('Headers:', req.headers);
             console.log('Body:', req.body);
 
+            if (req.body?.data?.orderCode === 123) {
+                console.log('PayOS webhook test request');
+
+                return res.status(200).json({
+                    message: 'Test webhook ok'
+                });
+            }
+
             const webhookData =
-                payOS.webhooks.verify(req.body);
+                await payOS.webhooks.verify(req.body);
 
             console.log(
                 'PayOS webhook:',

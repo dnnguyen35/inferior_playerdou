@@ -13,12 +13,16 @@
   },
   "build": {
     "appId": "com.donation.alert",
-    "productName": "donation_alert",
+    "productName": "cuopGiatQuan6_donation",
     "files": [
       "desktop_app.js",
       "preload.cjs",
       "index.html",
       "main.js",
+      "assets/**/*"
+    ],
+    "asar": true,
+    "asarUnpack": [
       "assets/**/*"
     ],
     "win": {

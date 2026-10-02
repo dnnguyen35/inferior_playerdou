@@ -3,6 +3,19 @@ const alertBox = document.getElementById('alert-box');
 const donorInfo = document.getElementById('donor-info');
 const donorMessage = document.getElementById('donor-message');
 
+const alertImg = alertBox ? alertBox.querySelector('img') : null; 
+
+let assetsPath = 'assets'; 
+if (window.location.href.includes('app.asar')) {
+    const basePath = window.location.href.substring(0, window.location.href.indexOf('app.asar'));
+    assetsPath = `${basePath}app.asar.unpacked/assets`;
+}
+
+introAudio.src = `${assetsPath}/domixi_intro_donate.mp3`;
+if (alertImg) {
+    alertImg.src = `${assetsPath}/domixi.gif`;
+}
+
 let currentAlertId = 0;
 
 let hideTimeout = null;

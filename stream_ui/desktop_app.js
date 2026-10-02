@@ -2,6 +2,8 @@ import { app, BrowserWindow, globalShortcut, screen } from 'electron';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+app.disableHardwareAcceleration();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -29,9 +31,11 @@ function createWindow() {
         resizable: false,
 
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
+            preload: path.join(__dirname, 'preload.cjs'),
             contextIsolation: true,
-            nodeIntegration: false
+            nodeIntegration: false,
+            webSecurity: false,
+            allowRunningInsecureContent: true
         }
     });
 

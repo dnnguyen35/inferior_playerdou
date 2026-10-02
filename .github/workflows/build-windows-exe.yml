@@ -1,0 +1,38 @@
+name: Build Windows Exe
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        working-directory: stream_ui
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: stream_ui/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Windows Exe
+        run: npm run build
+
+      - name: Upload Exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: donation-alert-windows
+          path: stream_ui/dist/*.exe

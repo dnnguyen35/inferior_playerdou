@@ -174,8 +174,7 @@ function processAlert(data) {
     }, 7000);
 }
 
-const socket =
-    io('http://localhost:3000');
+const socket = io('https://inferior-playerdou.onrender.com');
 
 
 socket.on('connect', () => {
